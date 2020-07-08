@@ -7,6 +7,7 @@ else:
   print("invalid result")
 
 print(type(x))
+print(z[:5])
 
 
 
