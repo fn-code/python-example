@@ -4,9 +4,10 @@ services:
     image: eclipse-mosquitto:1.6.10
     container_name: mosquitto_iot
     restart: always
-    volumes: 
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - $HOME/docker/volumes/mosquitto/data:/mosquitto/data
       - $HOME/docker/volumes/mosquitto/log:/mosquitto/log
     ports: 
       - 1883:1883
-      - 9001:9001
+      - 9003:9003

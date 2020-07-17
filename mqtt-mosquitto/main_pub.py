@@ -4,7 +4,7 @@ import json
 
 gps_sensor = {
     "sensor_id": "GPS_P1",
-    "type": "gps_sensor",
+    "type": "gps_sensor1",
     "payload": {
         "latitude": 0.123123,
         "longitude": 123.1232323
@@ -20,7 +20,8 @@ temp_sensor = {
 }
 
 broker_address = "0.0.0.0"
-broker_port = 1883
+# user port 9001 or 9003 for websocket
+broker_port = 9003
 broker_keepalive = 60
 
 MQTT_TOPIC_GPS = "p1/gps"
@@ -67,7 +68,7 @@ def on_message_info(client, userdata, message):
     print("message retain flag=", message.retain)
 
 
-client = mqtt.Client("P2")
+client = mqtt.Client(client_id="P2", transport="websockets")
 client.on_connect = on_connect
 client.on_publish = on_publish
 client.connect(broker_address, broker_port)

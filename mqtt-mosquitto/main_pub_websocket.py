@@ -19,8 +19,8 @@ temp_sensor = {
     }
 }
 
-broker_address = "0.0.0.0"
-broker_port = 1883
+broker_address = "localhost"
+broker_port = 9003
 broker_keepalive = 60
 
 MQTT_TOPIC_GPS = "p1/gps"
@@ -41,9 +41,10 @@ def on_log(client, userdata, level, buf):
     print("log"+ buf)
 
 
-client = mqtt.Client("P2")
+client = mqtt.Client(client_id="P2", transport="websockets")
 client.on_connect = on_connect
 client.on_publish = on_publish
+client.on_log = on_log
 client.connect(broker_address, broker_port)
 
 
