@@ -8,7 +8,6 @@ broker_keepalive = 60
 
 MQTT_TOPIC_GPS = "p1/gps"
 MQTT_TOPIC_TEMP = "p1/temp"
-
 MQTT_TOPIC_INFO = "p1/info"
 MQTT_TOPIC_INFO_REQ = "p1/info/req"
 
@@ -16,6 +15,7 @@ device_info = {
     "device_id": "P1",
     "device_name": "DEVICE 1"
 }
+
 
 def on_log(client, userdata, level, buf):
     print("log: "+ buf)
@@ -44,7 +44,6 @@ def on_message_temp(client, userdata, message):
 
 def on_message_info(client, userdata, message):
     client.publish(MQTT_TOPIC_INFO, json.dumps(device_info))
-
 
 
 def on_disconnect(client, userdata, rc):
